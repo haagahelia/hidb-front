@@ -1,3 +1,5 @@
+// add this whole to the react list view, or remove the const = mockdata if you want to pull the file separately.
+
 const = mockData[
 	{
 		id: 1,
