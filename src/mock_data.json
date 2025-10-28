@@ -13,6 +13,7 @@ const = mockData[
 		],
 	},
 	// Mock data only, reference to images will be inside of the project instead of image links from Wikipedia.{
+	{
 		id: 2,
 		name: 'de Havilland Vampire Mk.52',
 		image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/De_Havilland_Vampire_VA-2_Ilmailumuseo_2.JPG/1280px-De_Havilland_Vampire_VA-2_Ilmailumuseo_2.JPG',
