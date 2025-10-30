@@ -13,6 +13,7 @@ export const mockData = [
       "Powerplant: 1 × Daimler-Benz DB 605A-1 V-12 inverted liquid-cooled piston engine 1,475 PS (1,455 hp; 1,085 kW)",
       "Range: 880-1994 km",
     ],
+    year: 1937,
   },
   // Mock data only, reference to images will be inside of the project instead of image links from Wikipedia.{
   {
@@ -26,6 +27,7 @@ export const mockData = [
       "Powerplant: 1 × de Havilland Goblin 3 centrifugal-flow turbojet engine",
       "Range: 1,960 km",
     ],
+    year: 1949,
   },
   // Mock data only, reference to images will be inside of the project instead of image links from Wikipedia.
 ];
