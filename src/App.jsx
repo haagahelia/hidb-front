@@ -1,10 +1,14 @@
+import  { BrowserRouter } from "react-router-dom";
 import "./App.css";
-import Background from "./Components/Background";
+import Router from "./Router";
+//import Background from "./Components/Background";
+
+
 function App() {
   return (
-    <>
-      <Background />
-    </>
+    <BrowserRouter>
+    	<Router />
+    </BrowserRouter>
   );
 }
 

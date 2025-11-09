@@ -3,8 +3,8 @@ import { useParams } from 'react-router-dom';
 import { mockData } from "../mock_data";
 
 const PlaneIndividual = () => {
-//	const { id } = useParams();
-	const id = "2";
+	const { id } = useParams();
+//	const id = "2"; //hardcoded until Router is set up, after use the useParams()
 	const plane = mockData.find(p => p.id === parseInt(id));
 	if ( !plane ) {
 		return (
