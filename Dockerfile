@@ -1,45 +1,45 @@
-# Stage 1: Build the app
-FROM node:20-alpine AS build
+# Multi-stage build for optimal image size and security
+
+# Stage 1: Build the React application
+FROM node:20-alpine AS builder
 
 # Set working directory
 WORKDIR /app
 
-# Copy package files and install dependencies
+# Copy package files
 COPY package*.json ./
-RUN npm install
 
-# Copy all files and build the app
+# Install dependencies
+RUN npm ci --only=production=false
+
+# Copy all source files
 COPY . .
+
+# Build the application
 RUN npm run build
 
-# Stage 2: Serve the built app using Nginx
-FROM nginx:stable-alpine
+# Stage 2: Serve with Nginx
+FROM nginx:alpine
 
-# Copy build output to Nginx web directory
-COPY --from=build /app/dist /usr/share/nginx/html
-
-# Replace default Nginx config with custom one (for single-page apps)
+# Remove default nginx config
 RUN rm /etc/nginx/conf.d/default.conf
-RUN echo 'server { \
-    listen 8080; \
-    server_name localhost; \
-    root /usr/share/nginx/html; \
-    index index.html; \
-    location / { \
-        try_files $$uri $$uri/ /index.html; \
-    } \
-    error_page 404 /index.html; \
-}' > /etc/nginx/conf.d/default.conf
 
-# Fix permissions (important for OpenShift/Rahti)
-RUN mkdir -p /var/cache/nginx /var/run /var/log/nginx /tmp/nginx && \
-    chmod -R 777 /var/cache/nginx /var/run /var/log/nginx /tmp/nginx /usr/share/nginx/html /etc/nginx/conf.d
+# Copy custom nginx configuration
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Switch to non-root user (Rahti will override UID)
+# Copy built files from builder stage
+COPY --from=builder /app/dist /usr/share/nginx/html
+
+# Create non-root user for security (required by OpenShift/Rahti)
+RUN chgrp -R 0 /var/cache/nginx /var/run /var/log/nginx /usr/share/nginx/html && \
+    chmod -R g+rwX /var/cache/nginx /var/run /var/log/nginx /usr/share/nginx/html && \
+    chmod g+w /etc/nginx/conf.d
+
+# Use non-root user
 USER 1001
 
-# Expose port 8080
+# Expose port 8080 (Rahti/OpenShift default)
 EXPOSE 8080
 
-# Start Nginx
+# Start nginx
 CMD ["nginx", "-g", "daemon off;"]
