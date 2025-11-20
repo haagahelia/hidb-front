@@ -1,5 +1,5 @@
 import { Search, TextAlignJustify, Plane } from "lucide-react";
-export default function Header() {
+export default function HomeScreenHeader() {
   return (
     <div className="w-full h-60 bg-[#FFFFFF] flex flex-col justify-center">
       <div className="w-full bbg-[#FFFFFF] h-15 flex flex-row justify-between items-center p-2">
