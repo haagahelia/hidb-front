@@ -10,7 +10,7 @@ export default defineConfig({
                 plugins: [["babel-plugin-react-compiler"]],
             },
         }),
-        tailwindcss(),
+        tailwindcss(), // Tailwind v4 plugin - handles everything automatically
     ],
     resolve: {
         alias: {
