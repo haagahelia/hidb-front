@@ -1,9 +1,17 @@
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import Background from "./Components/Background";
+import HomeScreen from "./Components/HomeScreen";
+import ScanScreen from "./Components/ScanScreen";
+import Map from "./Components/Map";
 function App() {
   return (
     <>
-      <Background />
+      <Routes>
+        <Route path="/" element={<HomeScreen />} />
+        <Route path="/home" element={<HomeScreen />} />
+        <Route path="/scan" element={<ScanScreen />} />
+        <Route path="/map" element={<Map />} />
+      </Routes>
     </>
   );
 }

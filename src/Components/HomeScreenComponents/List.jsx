@@ -1,5 +1,5 @@
-import Card from "./SmallComponents/Card";
-import { mockData } from "../mock_data";
+import Card from "../SmallComponents/Card";
+import { mockData } from "../../mock_data";
 
 export default function List() {
   return (
