@@ -2,8 +2,8 @@ import {TooltipProvider} from "@/components/ui/tooltip";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import Index from "./pages/Index";
-// import Aircraft from "./pages/Aircraft";
-// import AircraftDetail from "./pages/AircraftDetail";
+import Aircraft from "./pages/Aircraft";
+import AircraftDetail from "./pages/AircraftDetail";
 // import MuseumMap from "./pages/MuseumMap";
 // import About from "./pages/About";
 import NotFound from "./pages/NotFound";
@@ -16,9 +16,9 @@ const App = () => (
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Index />} />
-                    {/* <Route path="/aircraft" element={<Aircraft />} />
+                    <Route path="/aircraft" element={<Aircraft />} />
                     <Route path="/aircraft/:id" element={<AircraftDetail />} />
-                    <Route path="/map" element={<MuseumMap />} />
+                    {/* <Route path="/map" element={<MuseumMap />} />
                     <Route path="/about" element={<About />} /> */}
                     {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                     <Route path="*" element={<NotFound />} />
