@@ -1,33 +1,33 @@
 import {useState} from "react";
 import {Link} from "react-router-dom";
-import {Search, Filter} from "lucide-react";
+import {Search, Filter, Building2} from "lucide-react";
 import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
 import {Card, CardContent} from "@/components/ui/card";
 import {Badge} from "@/components/ui/badge";
 import Navigation from "@/components/Navigation";
-import {aircraftData} from "@/data/aircraftData";
+import {organizationData} from "@/data/organizationData";
 
-const Aircraft = () => {
+const Organization = () => {
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedType, setSelectedType] = useState<string>("all");
 
-    const types = ["all", "military", "commercial", "general aviation", "cargo", "rotorcraft", "other"];
+    const types = ["all", "military", "airline", "border_guard", "postal_service", "commercial", "other"];
 
-    const filteredAircraft = aircraftData.filter((aircraft) => {
+    const filteredOrganizations = organizationData.filter((org) => {
         const matchesSearch =
-            aircraft.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            aircraft.manufacturer.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            aircraft.model.toLowerCase().includes(searchTerm.toLowerCase());
+            org.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            org.country.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            org.type.toLowerCase().includes(searchTerm.toLowerCase());
 
-        const matchesType = selectedType === "all" || aircraft.type === selectedType;
+        const matchesType = selectedType === "all" || org.type === selectedType;
 
         return matchesSearch && matchesType;
     });
 
     const getTypeLabel = (type: string) => {
         return type
-            .split(" ")
+            .split("_")
             .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
             .join(" ");
     };
@@ -40,9 +40,9 @@ const Aircraft = () => {
                 <div className="container mx-auto px-4 flex flex-col flex-1">
                     {/* Header */}
                     <div className="text-center mb-12 animate-fade-in">
-                        <h1 className="text-5xl font-bold mb-4 text-gradient">Aircraft Collection</h1>
+                        <h1 className="text-5xl font-bold mb-4 text-gradient">Organizations</h1>
                         <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                            Explore our extensive collection of historic aircraft from various eras and nations
+                            Explore the air forces, airlines, and organizations that operated these historic aircraft
                         </p>
                     </div>
 
@@ -52,7 +52,7 @@ const Aircraft = () => {
                             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                             <Input
                                 type="text"
-                                placeholder="Search aircraft by name, manufacturer, or role..."
+                                placeholder="Search organizations by name, country, or type..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
                                 className="pl-10"
@@ -75,57 +75,48 @@ const Aircraft = () => {
                         </div>
                     </div>
 
-                    {/* Aircraft Grid */}
+                    {/* Organizations Grid */}
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {filteredAircraft.map((aircraft, index) => (
+                        {filteredOrganizations.map((org, index) => (
                             <Link
-                                key={aircraft.id}
-                                to={`/aircraft/${aircraft.id}`}
+                                key={org.id}
+                                to={`/organization/${org.id}`}
                                 className="block animate-fade-in"
                                 style={{animationDelay: `${index * 0.1}s`}}
                             >
                                 <Card className="h-full hover-lift aircraft-shadow border-border overflow-hidden group">
-                                    <div className="relative h-64 overflow-hidden">
-                                        <img
-                                            src={aircraft.image}
-                                            alt={aircraft.name}
-                                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                                        />
+                                    <div className="relative h-48 overflow-hidden bg-gradient-metallic flex items-center justify-center">
+                                        <Building2 className="h-24 w-24 text-primary-foreground opacity-80" />
                                         <div className="absolute inset-0 bg-linear-to-t from-background to-transparent opacity-60" />
                                         <Badge className="absolute top-4 right-4 gradient-sky">
-                                            {getTypeLabel(aircraft.type)}
+                                            {getTypeLabel(org.type)}
                                         </Badge>
-                                        {aircraft.status === "under restoration" && (
-                                            <Badge className="absolute top-4 left-4 bg-accent">Under Restoration</Badge>
-                                        )}
                                     </div>
 
                                     <CardContent className="p-6">
                                         <h3 className="text-2xl font-bold mb-2 group-hover:text-primary transition-colors">
-                                            {aircraft.name}
+                                            {org.name}
                                         </h3>
                                         <p className="text-sm text-muted-foreground mb-3">
-                                            {aircraft.manufacturer} • {aircraft.year_built}
+                                            {org.country} •{" "}
+                                            {org.founding_year ? `Founded ${org.founding_year}` : "Historic"}
                                         </p>
-                                        <p className="text-muted-foreground mb-4 line-clamp-3">
-                                            {aircraft.description}
-                                        </p>
-                                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                                            <Badge variant="outline">{aircraft.model}</Badge>
-                                            {aircraft.display_section && (
-                                                <Badge variant="outline">{aircraft.display_section}</Badge>
-                                            )}
-                                        </div>
+                                        <p className="text-muted-foreground mb-4 line-clamp-3">{org.description}</p>
+                                        {org.notable_aircraft && org.notable_aircraft.length > 0 && (
+                                            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                                                <Badge variant="outline">{org.notable_aircraft.length} Aircraft</Badge>
+                                            </div>
+                                        )}
                                     </CardContent>
                                 </Card>
                             </Link>
                         ))}
                     </div>
 
-                    {filteredAircraft.length === 0 && (
+                    {filteredOrganizations.length === 0 && (
                         <div className="py-16 flex-1 flex flex-col items-center justify-center">
                             <p className="text-xl text-muted-foreground">
-                                No aircraft found matching your search criteria.
+                                No organizations found matching your search criteria.
                             </p>
                         </div>
                     )}
@@ -141,4 +132,4 @@ const Aircraft = () => {
     );
 };
 
-export default Aircraft;
+export default Organization;
