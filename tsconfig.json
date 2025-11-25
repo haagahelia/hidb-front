@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "target": "ESNext",
+        "module": "ESNext",
+        "lib": ["ESNext", "DOM"],
+        "jsx": "react-jsx",
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "allowJs": true,
+        "resolveJsonModule": true,
+        "skipLibCheck": true,
+
+        "baseUrl": ".",
+        "paths": {
+            "@/*": ["src/*"]
+        },
+
+        "noEmit": true
+    },
+    "include": ["src", "vite.config.js", "index.html"],
+    "exclude": ["node_modules", "dist"]
+}
