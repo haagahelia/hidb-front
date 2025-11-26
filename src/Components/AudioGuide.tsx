@@ -1,14 +1,14 @@
-import {useState} from "react";
-import {Button} from "@/components/ui/button";
-import {Card} from "@/components/ui/card";
-import {Play, Pause, Volume2} from "lucide-react";
+import { useState } from "react";
+import { Button } from "@/Components/ui/button";
+import { Card } from "@/Components/ui/card";
+import { Pause, Play, Volume2 } from "lucide-react";
 
 interface AudioGuideProps {
     aircraftName: string;
     audioDescription: string;
 }
 
-const AudioGuide = ({aircraftName, audioDescription}: AudioGuideProps) => {
+const AudioGuide = ({ aircraftName, audioDescription }: AudioGuideProps) => {
     const [isPlaying, setIsPlaying] = useState(false);
     const [, setProgress] = useState(0);
 
@@ -64,15 +64,21 @@ const AudioGuide = ({aircraftName, audioDescription}: AudioGuideProps) => {
                     variant={isPlaying ? "secondary" : "default"}
                     className="shrink-0"
                 >
-                    {isPlaying ? <Pause className="h-5 w-5 mr-2" /> : <Play className="h-5 w-5 mr-2" />}
+                    {isPlaying
+                        ? <Pause className="h-5 w-5 mr-2" />
+                        : <Play className="h-5 w-5 mr-2" />}
                     {isPlaying ? "Pause" : "Play"} Audio Guide
                 </Button>
                 <div className="flex-1">
                     <div className="flex items-center gap-2 mb-2">
                         <Volume2 className="h-4 w-4 text-white" />
-                        <p className="text-sm font-semibold text-white">Audio Guide for {aircraftName}</p>
+                        <p className="text-sm font-semibold text-white">
+                            Audio Guide for {aircraftName}
+                        </p>
                     </div>
-                    <p className="text-xs text-white/80">Listen to detailed information about this aircraft</p>
+                    <p className="text-xs text-white/80">
+                        Listen to detailed information about this aircraft
+                    </p>
                 </div>
             </div>
         </Card>

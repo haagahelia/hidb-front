@@ -1,25 +1,38 @@
-import {useParams, Link} from "react-router-dom";
-import {ArrowLeft, Calendar, Building2, Globe, Award, Plane} from "lucide-react";
-import {Button} from "@/components/ui/button";
-import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
-import {Badge} from "@/components/ui/badge";
-import {Separator} from "@/components/ui/separator";
-import Navigation from "@/components/Navigation";
-import {organizationData} from "@/data/organizationData";
-import {aircraftData} from "@/data/aircraftData";
+import { Link, useParams } from "react-router-dom";
+import {
+    ArrowLeft,
+    Award,
+    Building2,
+    Calendar,
+    Globe,
+    Plane,
+} from "lucide-react";
+import { Button } from "@/Components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/Components/ui/card";
+import { Badge } from "@/Components/ui/badge";
+import { Separator } from "@/Components/ui/separator";
+import Navigation from "@/Components/Navigation";
+import { organizationData } from "@/data/organizationData";
+import { aircraftData } from "@/data/aircraftData";
 
 const OrganizationDetail = () => {
-    const {id} = useParams<{id: string}>();
-    const organization = organizationData.find((o) => o.id === parseInt(id || "0"));
+    const { id } = useParams<{ id: string }>();
+    const organization = organizationData.find((o) =>
+        o.id === parseInt(id || "0")
+    );
 
-    const relatedAircraft = organization ? aircraftData.filter((a) => a.organization_id === organization.id) : [];
+    const relatedAircraft = organization
+        ? aircraftData.filter((a) => a.organization_id === organization.id)
+        : [];
 
     if (!organization) {
         return (
             <div className="min-h-screen bg-background">
                 <Navigation />
                 <div className="pt-24 pb-16 container mx-auto px-4 text-center">
-                    <h1 className="text-4xl font-bold mb-4">Organization Not Found</h1>
+                    <h1 className="text-4xl font-bold mb-4">
+                        Organization Not Found
+                    </h1>
                     <Link to="/organization">
                         <Button>Back to Organizations</Button>
                     </Link>
@@ -42,7 +55,10 @@ const OrganizationDetail = () => {
             <div className="pt-24 pb-16">
                 <div className="container mx-auto px-4">
                     {/* Back Button */}
-                    <Link to="/organization" className="inline-block mb-6 animate-fade-in">
+                    <Link
+                        to="/organization"
+                        className="inline-block mb-6 animate-fade-in"
+                    >
                         <Button variant="ghost" size="sm">
                             <ArrowLeft className="mr-2 h-4 w-4" />
                             Back to Organizations
@@ -54,11 +70,16 @@ const OrganizationDetail = () => {
                         <Building2 className="h-32 w-32 text-primary-foreground opacity-30 absolute" />
                         <div className="absolute inset-0 bg-linear-to-t from-background via-transparent to-transparent" />
                         <div className="absolute bottom-8 left-8 right-8 z-10">
-                            <Badge className="mb-3 gradient-sky">{getTypeLabel(organization.type)}</Badge>
-                            <h1 className="text-5xl font-bold text-white drop-shadow-lg mb-2">{organization.name}</h1>
+                            <Badge className="mb-3 gradient-sky">
+                                {getTypeLabel(organization.type)}
+                            </Badge>
+                            <h1 className="text-5xl font-bold text-white drop-shadow-lg mb-2">
+                                {organization.name}
+                            </h1>
                             <p className="text-xl text-white/90 drop-shadow-md">
                                 {organization.country}
-                                {organization.founding_year && ` • Founded ${organization.founding_year}`}
+                                {organization.founding_year &&
+                                    ` • Founded ${organization.founding_year}`}
                             </p>
                         </div>
                     </div>
@@ -83,9 +104,14 @@ const OrganizationDetail = () => {
 
                             {/* History */}
                             {organization.history && (
-                                <Card className="animate-slide-in-left" style={{animationDelay: "0.1s"}}>
+                                <Card
+                                    className="animate-slide-in-left"
+                                    style={{ animationDelay: "0.1s" }}
+                                >
                                     <CardHeader>
-                                        <CardTitle>Historical Background</CardTitle>
+                                        <CardTitle>
+                                            Historical Background
+                                        </CardTitle>
                                     </CardHeader>
                                     <CardContent>
                                         <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
@@ -97,7 +123,10 @@ const OrganizationDetail = () => {
 
                             {/* Related Aircraft */}
                             {relatedAircraft.length > 0 && (
-                                <Card className="animate-slide-in-left" style={{animationDelay: "0.2s"}}>
+                                <Card
+                                    className="animate-slide-in-left"
+                                    style={{ animationDelay: "0.2s" }}
+                                >
                                     <CardHeader>
                                         <CardTitle className="flex items-center gap-2">
                                             <Plane className="h-5 w-5 text-primary" />
@@ -115,8 +144,10 @@ const OrganizationDetail = () => {
                                                     <Card className="overflow-hidden hover-lift border-border">
                                                         <div className="relative h-32 overflow-hidden">
                                                             <img
-                                                                src={aircraft.image}
-                                                                alt={aircraft.name}
+                                                                src={aircraft
+                                                                    .image}
+                                                                alt={aircraft
+                                                                    .name}
                                                                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                                                             />
                                                         </div>
@@ -125,7 +156,11 @@ const OrganizationDetail = () => {
                                                                 {aircraft.name}
                                                             </h4>
                                                             <p className="text-sm text-muted-foreground">
-                                                                {aircraft.model} • {aircraft.year_built}
+                                                                {aircraft.model}
+                                                                {" "}
+                                                                •{" "}
+                                                                {aircraft
+                                                                    .year_built}
                                                             </p>
                                                         </CardContent>
                                                     </Card>
@@ -149,12 +184,18 @@ const OrganizationDetail = () => {
                                 </CardHeader>
                                 <CardContent className="space-y-3">
                                     <div>
-                                        <p className="text-sm text-muted-foreground">Organization Type</p>
-                                        <p className="font-medium">{getTypeLabel(organization.type)}</p>
+                                        <p className="text-sm text-muted-foreground">
+                                            Organization Type
+                                        </p>
+                                        <p className="font-medium">
+                                            {getTypeLabel(organization.type)}
+                                        </p>
                                         <Separator className="mt-3" />
                                     </div>
                                     <div>
-                                        <p className="text-sm text-muted-foreground">Country</p>
+                                        <p className="text-sm text-muted-foreground">
+                                            Country
+                                        </p>
                                         <p className="font-medium flex items-center gap-2">
                                             <Globe className="h-4 w-4 text-primary" />
                                             {organization.country}
@@ -163,7 +204,9 @@ const OrganizationDetail = () => {
                                     </div>
                                     {organization.founding_year && (
                                         <div>
-                                            <p className="text-sm text-muted-foreground">Founded</p>
+                                            <p className="text-sm text-muted-foreground">
+                                                Founded
+                                            </p>
                                             <p className="font-medium flex items-center gap-2">
                                                 <Calendar className="h-4 w-4 text-primary" />
                                                 {organization.founding_year}
@@ -172,20 +215,32 @@ const OrganizationDetail = () => {
                                         </div>
                                     )}
                                     <div>
-                                        <p className="text-sm text-muted-foreground">Aircraft in Museum</p>
+                                        <p className="text-sm text-muted-foreground">
+                                            Aircraft in Museum
+                                        </p>
                                         <p className="font-medium">
                                             {relatedAircraft.length}{" "}
-                                            {relatedAircraft.length === 1 ? "Aircraft" : "Aircraft"}
+                                            {relatedAircraft.length === 1
+                                                ? "Aircraft"
+                                                : "Aircraft"}
                                         </p>
                                     </div>
                                 </CardContent>
                             </Card>
 
                             {/* Type Badge */}
-                            <Card className="animate-slide-in-right" style={{animationDelay: "0.1s"}}>
+                            <Card
+                                className="animate-slide-in-right"
+                                style={{ animationDelay: "0.1s" }}
+                            >
                                 <CardContent className="pt-6 text-center">
-                                    <p className="text-sm text-muted-foreground mb-2">Organization Category</p>
-                                    <Badge variant="outline" className="text-lg py-2 px-4">
+                                    <p className="text-sm text-muted-foreground mb-2">
+                                        Organization Category
+                                    </p>
+                                    <Badge
+                                        variant="outline"
+                                        className="text-lg py-2 px-4"
+                                    >
                                         {getTypeLabel(organization.type)}
                                     </Badge>
                                 </CardContent>
@@ -197,7 +252,10 @@ const OrganizationDetail = () => {
 
             <footer className="py-8 bg-card border-t border-border">
                 <div className="container mx-auto px-4 text-center text-muted-foreground">
-                    <p>&copy; 2024 Finnish Aviation Museum. All rights reserved.</p>
+                    <p>
+                        &copy; 2024 Finnish Aviation Museum. All rights
+                        reserved.
+                    </p>
                 </div>
             </footer>
         </div>

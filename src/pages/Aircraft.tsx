@@ -1,26 +1,37 @@
-import {useState} from "react";
-import {Link} from "react-router-dom";
-import {Search, Filter} from "lucide-react";
-import {Input} from "@/components/ui/input";
-import {Button} from "@/components/ui/button";
-import {Card, CardContent} from "@/components/ui/card";
-import {Badge} from "@/components/ui/badge";
-import Navigation from "@/components/Navigation";
-import {aircraftData} from "@/data/aircraftData";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { Filter, Search } from "lucide-react";
+import { Input } from "@/Components/ui/input";
+import { Button } from "@/Components/ui/button";
+import { Card, CardContent } from "@/Components/ui/card";
+import { Badge } from "@/Components/ui/badge";
+import Navigation from "@/Components/Navigation";
+import { aircraftData } from "@/data/aircraftData";
 
 const Aircraft = () => {
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedType, setSelectedType] = useState<string>("all");
 
-    const types = ["all", "military", "commercial", "general aviation", "cargo", "rotorcraft", "other"];
+    const types = [
+        "all",
+        "military",
+        "commercial",
+        "general aviation",
+        "cargo",
+        "rotorcraft",
+        "other",
+    ];
 
     const filteredAircraft = aircraftData.filter((aircraft) => {
         const matchesSearch =
             aircraft.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            aircraft.manufacturer.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            aircraft.manufacturer.toLowerCase().includes(
+                searchTerm.toLowerCase(),
+            ) ||
             aircraft.model.toLowerCase().includes(searchTerm.toLowerCase());
 
-        const matchesType = selectedType === "all" || aircraft.type === selectedType;
+        const matchesType = selectedType === "all" ||
+            aircraft.type === selectedType;
 
         return matchesSearch && matchesType;
     });
@@ -40,9 +51,12 @@ const Aircraft = () => {
                 <div className="container mx-auto px-4 flex flex-col flex-1">
                     {/* Header */}
                     <div className="text-center mb-12 animate-fade-in">
-                        <h1 className="text-5xl font-bold mb-4 text-gradient">Aircraft Collection</h1>
+                        <h1 className="text-5xl font-bold mb-4 text-gradient">
+                            Aircraft Collection
+                        </h1>
                         <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                            Explore our extensive collection of historic aircraft from various eras and nations
+                            Explore our extensive collection of historic
+                            aircraft from various eras and nations
                         </p>
                     </div>
 
@@ -64,12 +78,18 @@ const Aircraft = () => {
                             {types.map((type) => (
                                 <Button
                                     key={type}
-                                    variant={selectedType === type ? "default" : "outline"}
+                                    variant={selectedType === type
+                                        ? "default"
+                                        : "outline"}
                                     size="sm"
                                     onClick={() => setSelectedType(type)}
-                                    className={selectedType === type ? "gradient-sky" : ""}
+                                    className={selectedType === type
+                                        ? "gradient-sky"
+                                        : ""}
                                 >
-                                    {type === "all" ? "All Types" : getTypeLabel(type)}
+                                    {type === "all"
+                                        ? "All Types"
+                                        : getTypeLabel(type)}
                                 </Button>
                             ))}
                         </div>
@@ -82,7 +102,7 @@ const Aircraft = () => {
                                 key={aircraft.id}
                                 to={`/aircraft/${aircraft.id}`}
                                 className="block animate-fade-in"
-                                style={{animationDelay: `${index * 0.1}s`}}
+                                style={{ animationDelay: `${index * 0.1}s` }}
                             >
                                 <Card className="h-full hover-lift aircraft-shadow border-border overflow-hidden group">
                                     <div className="relative h-64 overflow-hidden">
@@ -95,8 +115,11 @@ const Aircraft = () => {
                                         <Badge className="absolute top-4 right-4 gradient-sky">
                                             {getTypeLabel(aircraft.type)}
                                         </Badge>
-                                        {aircraft.status === "under restoration" && (
-                                            <Badge className="absolute top-4 left-4 bg-accent">Under Restoration</Badge>
+                                        {aircraft.status ===
+                                                "under restoration" && (
+                                            <Badge className="absolute top-4 left-4 bg-accent">
+                                                Under Restoration
+                                            </Badge>
                                         )}
                                     </div>
 
@@ -105,15 +128,20 @@ const Aircraft = () => {
                                             {aircraft.name}
                                         </h3>
                                         <p className="text-sm text-muted-foreground mb-3">
-                                            {aircraft.manufacturer} • {aircraft.year_built}
+                                            {aircraft.manufacturer} •{" "}
+                                            {aircraft.year_built}
                                         </p>
                                         <p className="text-muted-foreground mb-4 line-clamp-3">
                                             {aircraft.description}
                                         </p>
                                         <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                                            <Badge variant="outline">{aircraft.model}</Badge>
+                                            <Badge variant="outline">
+                                                {aircraft.model}
+                                            </Badge>
                                             {aircraft.display_section && (
-                                                <Badge variant="outline">{aircraft.display_section}</Badge>
+                                                <Badge variant="outline">
+                                                    {aircraft.display_section}
+                                                </Badge>
                                             )}
                                         </div>
                                     </CardContent>
@@ -134,7 +162,10 @@ const Aircraft = () => {
 
             <footer className="py-8 bg-card border-t border-border mt-auto">
                 <div className="container mx-auto px-4 text-center text-muted-foreground">
-                    <p>&copy; 2024 Finnish Aviation Museum. All rights reserved.</p>
+                    <p>
+                        &copy; 2024 Finnish Aviation Museum. All rights
+                        reserved.
+                    </p>
                 </div>
             </footer>
         </div>

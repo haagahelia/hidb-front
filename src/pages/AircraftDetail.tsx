@@ -1,15 +1,15 @@
-import {useParams, Link} from "react-router-dom";
-import {ArrowLeft, Calendar, Wrench, Lightbulb, Award} from "lucide-react";
-import {Button} from "@/components/ui/button";
-import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
-import {Badge} from "@/components/ui/badge";
-import {Separator} from "@/components/ui/separator";
-import Navigation from "@/components/Navigation";
-import AudioGuide from "@/components/AudioGuide";
-import {aircraftData} from "@/data/aircraftData";
+import { Link, useParams } from "react-router-dom";
+import { ArrowLeft, Award, Calendar, Lightbulb, Wrench } from "lucide-react";
+import { Button } from "@/Components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/Components/ui/card";
+import { Badge } from "@/Components/ui/badge";
+import { Separator } from "@/Components/ui/separator";
+import Navigation from "@/Components/Navigation";
+import AudioGuide from "@/Components/AudioGuide";
+import { aircraftData } from "@/data/aircraftData";
 
 const AircraftDetail = () => {
-    const {id} = useParams<{id: string}>();
+    const { id } = useParams<{ id: string }>();
     const aircraft = aircraftData.find((a) => a.id === parseInt(id || "0"));
 
     if (!aircraft) {
@@ -17,7 +17,9 @@ const AircraftDetail = () => {
             <div className="min-h-screen bg-background">
                 <Navigation />
                 <div className="pt-24 pb-16 container mx-auto px-4 text-center">
-                    <h1 className="text-4xl font-bold mb-4">Aircraft Not Found</h1>
+                    <h1 className="text-4xl font-bold mb-4">
+                        Aircraft Not Found
+                    </h1>
                     <Link to="/aircraft">
                         <Button>Back to Collection</Button>
                     </Link>
@@ -33,7 +35,10 @@ const AircraftDetail = () => {
             <div className="pt-24 pb-16">
                 <div className="container mx-auto px-4">
                     {/* Back Button */}
-                    <Link to="/aircraft" className="inline-block mb-6 animate-fade-in">
+                    <Link
+                        to="/aircraft"
+                        className="inline-block mb-6 animate-fade-in"
+                    >
                         <Button variant="ghost" size="sm">
                             <ArrowLeft className="mr-2 h-4 w-4" />
                             Back to Collection
@@ -42,16 +47,27 @@ const AircraftDetail = () => {
 
                     {/* Header Image */}
                     <div className="relative h-96 rounded-xl overflow-hidden mb-8 animate-fade-in aircraft-shadow">
-                        <img src={aircraft.image} alt={aircraft.name} className="w-full h-full object-cover" />
+                        <img
+                            src={aircraft.image}
+                            alt={aircraft.name}
+                            className="w-full h-full object-cover"
+                        />
                         <div className="absolute inset-0 bg-linear-to-t from-background via-transparent to-transparent" />
                         <div className="absolute bottom-8 left-8 right-8">
                             <div className="flex gap-2 mb-3">
-                                <Badge className="gradient-sky">{aircraft.type}</Badge>
-                                <Badge className="bg-accent">{aircraft.status}</Badge>
+                                <Badge className="gradient-sky">
+                                    {aircraft.type}
+                                </Badge>
+                                <Badge className="bg-accent">
+                                    {aircraft.status}
+                                </Badge>
                             </div>
-                            <h1 className="text-5xl font-bold text-white drop-shadow-lg mb-2">{aircraft.name}</h1>
+                            <h1 className="text-5xl font-bold text-white drop-shadow-lg mb-2">
+                                {aircraft.name}
+                            </h1>
                             <p className="text-xl text-white/90 drop-shadow-md">
-                                {aircraft.manufacturer} {aircraft.model} • {aircraft.year_built}
+                                {aircraft.manufacturer} {aircraft.model} •{" "}
+                                {aircraft.year_built}
                             </p>
                         </div>
                     </div>
@@ -62,7 +78,10 @@ const AircraftDetail = () => {
                             {/* Audio Guide */}
                             {aircraft.history && (
                                 <div className="animate-fade-in">
-                                    <AudioGuide aircraftName={aircraft.name} audioDescription={aircraft.history} />
+                                    <AudioGuide
+                                        aircraftName={aircraft.name}
+                                        audioDescription={aircraft.history}
+                                    />
                                 </div>
                             )}
 
@@ -83,9 +102,14 @@ const AircraftDetail = () => {
 
                             {/* History */}
                             {aircraft.history && (
-                                <Card className="animate-slide-in-left" style={{animationDelay: "0.1s"}}>
+                                <Card
+                                    className="animate-slide-in-left"
+                                    style={{ animationDelay: "0.1s" }}
+                                >
                                     <CardHeader>
-                                        <CardTitle>Historical Significance</CardTitle>
+                                        <CardTitle>
+                                            Historical Significance
+                                        </CardTitle>
                                     </CardHeader>
                                     <CardContent>
                                         <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
@@ -97,19 +121,28 @@ const AircraftDetail = () => {
 
                             {/* Importance */}
                             {aircraft.importance && (
-                                <Card className="animate-slide-in-left" style={{animationDelay: "0.2s"}}>
+                                <Card
+                                    className="animate-slide-in-left"
+                                    style={{ animationDelay: "0.2s" }}
+                                >
                                     <CardHeader>
                                         <CardTitle>Why It Matters</CardTitle>
                                     </CardHeader>
                                     <CardContent>
-                                        <p className="text-muted-foreground leading-relaxed">{aircraft.importance}</p>
+                                        <p className="text-muted-foreground leading-relaxed">
+                                            {aircraft.importance}
+                                        </p>
                                     </CardContent>
                                 </Card>
                             )}
 
                             {/* Fun Facts */}
-                            {aircraft.funFacts && aircraft.funFacts.length > 0 && (
-                                <Card className="animate-slide-in-left gradient-sky" style={{animationDelay: "0.3s"}}>
+                            {aircraft.funFacts &&
+                                aircraft.funFacts.length > 0 && (
+                                <Card
+                                    className="animate-slide-in-left gradient-sky"
+                                    style={{ animationDelay: "0.3s" }}
+                                >
                                     <CardHeader>
                                         <CardTitle className="flex items-center gap-2 text-white">
                                             <Lightbulb className="h-5 w-5" />
@@ -118,9 +151,17 @@ const AircraftDetail = () => {
                                     </CardHeader>
                                     <CardContent>
                                         <ul className="space-y-3">
-                                            {aircraft.funFacts.map((fact, index) => (
-                                                <li key={index} className="flex items-start gap-3 text-white/90">
-                                                    <span className="text-xl">✈️</span>
+                                            {aircraft.funFacts.map((
+                                                fact,
+                                                index,
+                                            ) => (
+                                                <li
+                                                    key={index}
+                                                    className="flex items-start gap-3 text-white/90"
+                                                >
+                                                    <span className="text-xl">
+                                                        ✈️
+                                                    </span>
                                                     <span>{fact}</span>
                                                 </li>
                                             ))}
@@ -143,42 +184,65 @@ const AircraftDetail = () => {
                                     </CardHeader>
                                     <CardContent className="space-y-3">
                                         <div>
-                                            <p className="text-sm text-muted-foreground">Weight</p>
-                                            <p className="font-medium">{aircraft.weight} kg</p>
+                                            <p className="text-sm text-muted-foreground">
+                                                Weight
+                                            </p>
+                                            <p className="font-medium">
+                                                {aircraft.weight} kg
+                                            </p>
                                             <Separator className="mt-3" />
                                         </div>
                                         {aircraft.crew_capacity !== null && (
                                             <div>
-                                                <p className="text-sm text-muted-foreground">Crew Capacity</p>
-                                                <p className="font-medium">{aircraft.crew_capacity}</p>
+                                                <p className="text-sm text-muted-foreground">
+                                                    Crew Capacity
+                                                </p>
+                                                <p className="font-medium">
+                                                    {aircraft.crew_capacity}
+                                                </p>
                                                 <Separator className="mt-3" />
                                             </div>
                                         )}
-                                        {aircraft.passenger_capacity !== null && aircraft.passenger_capacity > 0 && (
+                                        {aircraft.passenger_capacity !== null &&
+                                            aircraft.passenger_capacity > 0 && (
                                             <div>
-                                                <p className="text-sm text-muted-foreground">Passenger Capacity</p>
-                                                <p className="font-medium">{aircraft.passenger_capacity}</p>
+                                                <p className="text-sm text-muted-foreground">
+                                                    Passenger Capacity
+                                                </p>
+                                                <p className="font-medium">
+                                                    {aircraft
+                                                        .passenger_capacity}
+                                                </p>
                                                 <Separator className="mt-3" />
                                             </div>
                                         )}
-                                        {Object.entries(aircraft.specifications).map(
-                                            ([key, value]) =>
-                                                value && (
-                                                    <div key={key}>
-                                                        <p className="text-sm text-muted-foreground capitalize">
-                                                            {key.replace(/([A-Z])/g, " $1").trim()}
-                                                        </p>
-                                                        <p className="font-medium">{value}</p>
-                                                        <Separator className="mt-3" />
-                                                    </div>
-                                                )
-                                        )}
+                                        {Object.entries(aircraft.specifications)
+                                            .map(
+                                                ([key, value]) =>
+                                                    value && (
+                                                        <div key={key}>
+                                                            <p className="text-sm text-muted-foreground capitalize">
+                                                                {key.replace(
+                                                                    /([A-Z])/g,
+                                                                    " $1",
+                                                                ).trim()}
+                                                            </p>
+                                                            <p className="font-medium">
+                                                                {value}
+                                                            </p>
+                                                            <Separator className="mt-3" />
+                                                        </div>
+                                                    ),
+                                            )}
                                     </CardContent>
                                 </Card>
                             )}
 
                             {/* Museum Information */}
-                            <Card className="animate-slide-in-right" style={{animationDelay: "0.1s"}}>
+                            <Card
+                                className="animate-slide-in-right"
+                                style={{ animationDelay: "0.1s" }}
+                            >
                                 <CardHeader>
                                     <CardTitle className="flex items-center gap-2">
                                         <Calendar className="h-5 w-5 text-primary" />
@@ -188,30 +252,51 @@ const AircraftDetail = () => {
                                 <CardContent className="space-y-3">
                                     {aircraft.display_section && (
                                         <div>
-                                            <p className="text-sm text-muted-foreground">Display Section</p>
-                                            <p className="font-medium">{aircraft.display_section}</p>
+                                            <p className="text-sm text-muted-foreground">
+                                                Display Section
+                                            </p>
+                                            <p className="font-medium">
+                                                {aircraft.display_section}
+                                            </p>
                                             <Separator className="mt-3" />
                                         </div>
                                     )}
                                     {aircraft.museum_location_number && (
                                         <div>
-                                            <p className="text-sm text-muted-foreground">Location Number</p>
-                                            <p className="font-medium">#{aircraft.museum_location_number}</p>
+                                            <p className="text-sm text-muted-foreground">
+                                                Location Number
+                                            </p>
+                                            <p className="font-medium">
+                                                #{aircraft
+                                                    .museum_location_number}
+                                            </p>
                                             <Separator className="mt-3" />
                                         </div>
                                     )}
                                     <div>
-                                        <p className="text-sm text-muted-foreground">Status</p>
-                                        <Badge className="mt-1">{aircraft.status}</Badge>
+                                        <p className="text-sm text-muted-foreground">
+                                            Status
+                                        </p>
+                                        <Badge className="mt-1">
+                                            {aircraft.status}
+                                        </Badge>
                                     </div>
                                 </CardContent>
                             </Card>
 
                             {/* Type Badge */}
-                            <Card className="animate-slide-in-right" style={{animationDelay: "0.2s"}}>
+                            <Card
+                                className="animate-slide-in-right"
+                                style={{ animationDelay: "0.2s" }}
+                            >
                                 <CardContent className="pt-6 text-center">
-                                    <p className="text-sm text-muted-foreground mb-2">Aircraft Type</p>
-                                    <Badge variant="outline" className="text-lg py-2 px-4">
+                                    <p className="text-sm text-muted-foreground mb-2">
+                                        Aircraft Type
+                                    </p>
+                                    <Badge
+                                        variant="outline"
+                                        className="text-lg py-2 px-4"
+                                    >
                                         {aircraft.type}
                                     </Badge>
                                 </CardContent>
@@ -223,7 +308,10 @@ const AircraftDetail = () => {
 
             <footer className="py-8 bg-card border-t border-border">
                 <div className="container mx-auto px-4 text-center text-muted-foreground">
-                    <p>&copy; 2024 Finnish Aviation Museum. All rights reserved.</p>
+                    <p>
+                        &copy; 2024 Finnish Aviation Museum. All rights
+                        reserved.
+                    </p>
                 </div>
             </footer>
         </div>

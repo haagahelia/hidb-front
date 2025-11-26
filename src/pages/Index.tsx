@@ -1,9 +1,9 @@
-import {Link} from "react-router-dom";
-import {Plane, Map, BookOpen, Navigation2} from "lucide-react";
-import {Button} from "@/components/ui/button";
-import {Card, CardContent} from "@/components/ui/card";
-import Navigation from "@/components/Navigation";
-import heroImage from  "@/assets/hero-aircraft.jpg";
+import { Link } from "react-router-dom";
+import { BookOpen, Map, Navigation2, Plane } from "lucide-react";
+import { Button } from "@/Components/ui/button";
+import { Card, CardContent } from "@/Components/ui/card";
+import Navigation from "@/Components/Navigation";
+import heroImage from "@/assets/hero-aircraft.jpg";
 
 const Index = () => {
     return (
@@ -28,17 +28,25 @@ const Index = () => {
                         Finnish Aviation Museum
                     </h1>
                     <p className="text-xl md:text-2xl mb-8 text-white/90 max-w-2xl mx-auto drop-shadow-md">
-                        Explore the fascinating history of aviation through our interactive digital guide
+                        Explore the fascinating history of aviation through our
+                        interactive digital guide
                     </p>
                     <div className="flex flex-wrap gap-4 justify-center">
                         <Link to="/aircraft">
-                            <Button size="lg" className="gradient-sky text-lg px-8 py-6 hover-lift">
+                            <Button
+                                size="lg"
+                                className="gradient-sky text-lg px-8 py-6 hover-lift"
+                            >
                                 <Plane className="mr-2 h-5 w-5" />
                                 Explore Aircraft
                             </Button>
                         </Link>
                         <Link to="/map">
-                            <Button size="lg" variant="secondary" className="text-lg px-8 py-6 hover-lift">
+                            <Button
+                                size="lg"
+                                variant="secondary"
+                                className="text-lg px-8 py-6 hover-lift"
+                            >
                                 <Map className="mr-2 h-5 w-5" />
                                 Museum Map
                             </Button>
@@ -56,7 +64,9 @@ const Index = () => {
             {/* Features Section */}
             <section className="py-20 bg-background">
                 <div className="container mx-auto px-4">
-                    <h2 className="text-4xl font-bold text-center mb-12 text-gradient">Your Digital Aviation Guide</h2>
+                    <h2 className="text-4xl font-bold text-center mb-12 text-gradient">
+                        Your Digital Aviation Guide
+                    </h2>
 
                     <div className="grid md:grid-cols-3 gap-8">
                         <Card className="hover-lift aircraft-shadow border-border">
@@ -64,10 +74,14 @@ const Index = () => {
                                 <div className="w-16 h-16 gradient-sky rounded-full flex items-center justify-center mb-4 mx-auto">
                                     <Plane className="h-8 w-8 text-white" />
                                 </div>
-                                <h3 className="text-xl font-bold mb-3 text-center">Aircraft Collection</h3>
+                                <h3 className="text-xl font-bold mb-3 text-center">
+                                    Aircraft Collection
+                                </h3>
                                 <p className="text-muted-foreground text-center">
-                                    Discover detailed information about historic aircraft, from fighters to transport
-                                    planes, with comprehensive specifications and fascinating histories.
+                                    Discover detailed information about historic
+                                    aircraft, from fighters to transport planes,
+                                    with comprehensive specifications and
+                                    fascinating histories.
                                 </p>
                             </CardContent>
                         </Card>
@@ -77,9 +91,12 @@ const Index = () => {
                                 <div className="w-16 h-16 gradient-sky rounded-full flex items-center justify-center mb-4 mx-auto">
                                     <Navigation2 className="h-8 w-8 text-white" />
                                 </div>
-                                <h3 className="text-xl font-bold mb-3 text-center">Interactive Navigation</h3>
+                                <h3 className="text-xl font-bold mb-3 text-center">
+                                    Interactive Navigation
+                                </h3>
                                 <p className="text-muted-foreground text-center">
-                                    Navigate the museum with ease using our interactive map. Find aircraft locations,
+                                    Navigate the museum with ease using our
+                                    interactive map. Find aircraft locations,
                                     facilities, and plan your visit efficiently.
                                 </p>
                             </CardContent>
@@ -90,10 +107,13 @@ const Index = () => {
                                 <div className="w-16 h-16 gradient-sky rounded-full flex items-center justify-center mb-4 mx-auto">
                                     <BookOpen className="h-8 w-8 text-white" />
                                 </div>
-                                <h3 className="text-xl font-bold mb-3 text-center">Rich History</h3>
+                                <h3 className="text-xl font-bold mb-3 text-center">
+                                    Rich History
+                                </h3>
                                 <p className="text-muted-foreground text-center">
-                                    Learn about Finland's aviation heritage, important dates, and the stories behind
-                                    each aircraft in our collection.
+                                    Learn about Finland's aviation heritage,
+                                    important dates, and the stories behind each
+                                    aircraft in our collection.
                                 </p>
                             </CardContent>
                         </Card>
@@ -104,13 +124,20 @@ const Index = () => {
             {/* Call to Action */}
             <section className="py-20 gradient-sky">
                 <div className="container mx-auto px-4 text-center">
-                    <h2 className="text-4xl font-bold mb-6 text-white">Ready to Start Your Journey?</h2>
+                    <h2 className="text-4xl font-bold mb-6 text-white">
+                        Ready to Start Your Journey?
+                    </h2>
                     <p className="text-xl mb-8 text-white/90 max-w-2xl mx-auto">
-                        Begin exploring our collection of historic aircraft and immerse yourself in the fascinating
-                        world of aviation history.
+                        Begin exploring our collection of historic aircraft and
+                        immerse yourself in the fascinating world of aviation
+                        history.
                     </p>
                     <Link to="/aircraft">
-                        <Button size="lg" variant="secondary" className="text-lg px-8 py-6 hover-lift">
+                        <Button
+                            size="lg"
+                            variant="secondary"
+                            className="text-lg px-8 py-6 hover-lift"
+                        >
                             Start Exploring
                         </Button>
                     </Link>
@@ -120,7 +147,10 @@ const Index = () => {
             {/* Footer */}
             <footer className="py-8 bg-card border-t border-border">
                 <div className="container mx-auto px-4 text-center text-muted-foreground">
-                    <p>&copy; 2024 Finnish Aviation Museum. All rights reserved.</p>
+                    <p>
+                        &copy; 2024 Finnish Aviation Museum. All rights
+                        reserved.
+                    </p>
                 </div>
             </footer>
         </div>
