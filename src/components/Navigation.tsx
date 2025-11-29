@@ -1,7 +1,7 @@
 import {Link, useLocation} from "react-router-dom";
 import {Plane, Menu, X} from "lucide-react";
 import {useState} from "react";
-import {Button} from "@/temp/ui/button";
+import {Button} from "@/components/ui/button";
 
 const Navigation = () => {
     const [isOpen, setIsOpen] = useState(false);

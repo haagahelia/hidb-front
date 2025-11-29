@@ -1,11 +1,11 @@
 import {useEffect, useState} from "react";
 import {useParams, Link} from "react-router-dom";
 import {ArrowLeft, Calendar, Building2, Globe, Award, Plane} from "lucide-react";
-import {Button} from "@/temp/ui/button";
-import {Card, CardContent, CardHeader, CardTitle} from "@/temp/ui/card";
-import {Badge} from "@/temp/ui/badge";
-import {Separator} from "@/temp/ui/separator";
-import Navigation from "@/temp/Navigation";
+import {Button} from "@/components/ui/button";
+import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
+import {Badge} from "@/components/ui/badge";
+import {Separator} from "@/components/ui/separator";
+import Navigation from "@/components/Navigation";
 import {motion} from "framer-motion";
 import {fetchOrganizationById, fetchAllAirCrafts} from "@/services/fetch";
 import {OrganizationInterface, AircraftInterface} from "@/interfaces/interfaces";
