@@ -1,5 +1,5 @@
 import {QRCodeSVG} from "qrcode.react";
-import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
+import {Card, CardContent, CardHeader, CardTitle} from "@/temp/ui/card";
 import {QrCode, Smartphone} from "lucide-react";
 import {motion} from "framer-motion";
 

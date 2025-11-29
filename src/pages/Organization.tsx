@@ -1,11 +1,11 @@
 import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import {Search, Filter, Building2} from "lucide-react";
-import {Input} from "@/components/ui/input";
-import {Button} from "@/components/ui/button";
-import {Card, CardContent} from "@/components/ui/card";
-import {Badge} from "@/components/ui/badge";
-import Navigation from "@/components/Navigation";
+import {Input} from "@/temp/ui/input";
+import {Button} from "@/temp/ui/button";
+import {Card, CardContent} from "@/temp/ui/card";
+import {Badge} from "@/temp/ui/badge";
+import Navigation from "@/temp/Navigation";
 import {motion} from "framer-motion";
 import {fetchAllOrganizations} from "@/services/fetch";
 import {OrganizationInterface} from "@/interfaces/interfaces";
