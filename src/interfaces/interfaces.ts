@@ -8,13 +8,14 @@ export interface AircraftInterface {
   organization_id: number | null;
   crew_capacity: number | null;
   passenger_capacity: number | null;
-  aircraft_type: string | null;
+  type: string | null;
   museum_location_number: number | null;
   display_section: string | null;
   qr_code_url: string | null;
   description: string | null;
   status: "on display" | "in storage" | "under restoration" | "loaned" | "decommissioned";
-  image: string;
+  thumbnail_url: string | null;
+  thumbnail_caption: string | null;
   specifications?: {
     length?: string;
     wingspan?: string;
