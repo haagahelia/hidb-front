@@ -1,14 +1,14 @@
 import {useEffect, useState} from "react";
 import {useParams, Link} from "react-router-dom";
 import {ArrowLeft, Calendar, Wrench, Lightbulb, Award} from "lucide-react";
-import {Button} from "@/components/ui/button";
-import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
-import {Badge} from "@/components/ui/badge";
-import {Separator} from "@/components/ui/separator";
-import Navigation from "@/components/Navigation";
-import AudioGuide from "@/components/AudioGuide";
+import {Button} from "@/temp/ui/button";
+import {Card, CardContent, CardHeader, CardTitle} from "@/temp/ui/card";
+import {Badge} from "@/temp/ui/badge";
+import {Separator} from "@/temp/ui/separator";
+import Navigation from "@/temp/Navigation";
+import AudioGuide from "@/temp/AudioGuide";
 import {motion} from "framer-motion";
-import QRCodeDisplay from "@/components/QRCodeDisplay";
+import QRCodeDisplay from "@/temp/QRCodeDisplay";
 import {fetchAircraftById} from "@/services/fetch";
 import {AircraftInterface} from "@/interfaces/interfaces";
 
@@ -62,7 +62,6 @@ const AircraftDetail = () => {
 
     return (
         <div className="min-h-screen bg-background relative">
-
             <Navigation />
 
             <div className="pt-24 pb-16 relative z-10">
