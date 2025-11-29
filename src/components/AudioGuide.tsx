@@ -1,6 +1,6 @@
 import {useState} from "react";
-import {Button} from "@/temp/ui/button";
-import {Card} from "@/temp/ui/card";
+import {Button} from "@/components/ui/button";
+import {Card} from "@/components/ui/card";
 import {Play, Pause, Volume2} from "lucide-react";
 
 interface AudioGuideProps {

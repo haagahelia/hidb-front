@@ -1,13 +1,13 @@
 import {Link} from "react-router-dom";
 import {Plane, Map, BookOpen, Navigation2, Sparkles} from "lucide-react";
-import {Button} from "@/temp/ui/button";
-import {Card, CardContent} from "@/temp/ui/card";
-import Navigation from "@/temp/Navigation";
+import {Button} from "@/components/ui/button";
+import {Card, CardContent} from "@/components/ui/card";
+import Navigation from "@/components/Navigation";
 import heroImage from "@/assets/hero-aircraft.jpg";
 import {motion, useScroll, useTransform} from "framer-motion";
 import {useRef} from "react";
-import WindParticles from "@/temp/animations/WindParticles";
-import MouseTracker from "@/temp/animations/MouseTracker";
+import WindParticles from "@/components/animations/WindParticles";
+import MouseTracker from "@/components/animations/MouseTracker";
 
 const Index = () => {
     const containerRef = useRef(null);
