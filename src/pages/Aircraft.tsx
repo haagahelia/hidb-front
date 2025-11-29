@@ -1,16 +1,36 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import {Link} from "react-router-dom";
-import {Search, Filter} from "lucide-react";
+import {Search, Filter, QrCode} from "lucide-react";
 import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
 import {Card, CardContent} from "@/components/ui/card";
 import {Badge} from "@/components/ui/badge";
 import Navigation from "@/components/Navigation";
-import {aircraftData} from "@/data/aircraftData";
+import {fetchAllAirCrafts} from "@/services/fetch";
+import {motion} from "framer-motion";
+import {AircraftInterface} from "@/interfaces/interfaces";
 
 const Aircraft = () => {
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedType, setSelectedType] = useState<string>("all");
+    const [aircraftData, setAirCraftData] = useState<AircraftInterface[]>([]);
+
+    //get all aircrafts
+    useEffect(() => {
+        let mounted = true;
+        (async () => {
+            try {
+                const data = await fetchAllAirCrafts();
+                if (mounted) setAirCraftData(data);
+                console.log(data);
+            } catch (error) {
+                console.error(error);
+            }
+        })();
+        return () => {
+            mounted = false;
+        };
+    }, []);
 
     const types = ["all", "military", "commercial", "general aviation", "cargo", "rotorcraft", "other"];
 
@@ -33,21 +53,31 @@ const Aircraft = () => {
     };
 
     return (
-        <div className="min-h-screen bg-background flex flex-col">
+        <div className="min-h-screen bg-background relative flex flex-col">
             <Navigation />
 
-            <div className="pt-24 pb-16 flex flex-col flex-1">
-                <div className="container mx-auto px-4 flex flex-col flex-1">
+            <div className="pt-24 pb-16 relative z-10 flex-1">
+                <div className="container mx-auto px-4">
                     {/* Header */}
-                    <div className="text-center mb-12 animate-fade-in">
+                    <motion.div
+                        className="text-center mb-12"
+                        initial={{opacity: 0, y: 20}}
+                        animate={{opacity: 1, y: 0}}
+                        transition={{duration: 0.6}}
+                    >
                         <h1 className="text-5xl font-bold mb-4 text-gradient">Aircraft Collection</h1>
                         <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
                             Explore our extensive collection of historic aircraft from various eras and nations
                         </p>
-                    </div>
+                    </motion.div>
 
                     {/* Search and Filter */}
-                    <div className="mb-8 space-y-4 md:space-y-0 md:flex md:items-center md:gap-4 animate-slide-in-left">
+                    <motion.div
+                        className="mb-8 space-y-4 md:space-y-0 md:flex md:items-center md:gap-4"
+                        initial={{opacity: 0, y: 20}}
+                        animate={{opacity: 1, y: 0}}
+                        transition={{duration: 0.6, delay: 0.2}}
+                    >
                         <div className="relative flex-1">
                             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                             <Input
@@ -73,66 +103,92 @@ const Aircraft = () => {
                                 </Button>
                             ))}
                         </div>
-                    </div>
+                    </motion.div>
 
                     {/* Aircraft Grid */}
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 auto-rows-fr">
                         {filteredAircraft.map((aircraft, index) => (
-                            <Link
+                            <motion.div
                                 key={aircraft.id}
-                                to={`/aircraft/${aircraft.id}`}
-                                className="block animate-fade-in"
-                                style={{animationDelay: `${index * 0.1}s`}}
+                                initial={{opacity: 0, y: 30}}
+                                animate={{opacity: 1, y: 0}}
+                                transition={{duration: 0.5, delay: index * 0.1}}
+                                className="h-full flex flex-col"
                             >
-                                <Card className="h-full hover-lift aircraft-shadow border-border overflow-hidden group">
-                                    <div className="relative h-64 overflow-hidden">
-                                        <img
-                                            src={aircraft.image}
-                                            alt={aircraft.name}
-                                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                                        />
-                                        <div className="absolute inset-0 bg-linear-to-t from-background to-transparent opacity-60" />
-                                        <Badge className="absolute top-4 right-4 gradient-sky">
-                                            {getTypeLabel(aircraft.type)}
-                                        </Badge>
-                                        {aircraft.status === "under restoration" && (
-                                            <Badge className="absolute top-4 left-4 bg-accent">Under Restoration</Badge>
-                                        )}
-                                    </div>
+                                <Link to={`/aircraft/${aircraft.id}`} className="block grow">
+                                    <motion.div
+                                        whileHover={{y: -10, scale: 1.02}}
+                                        transition={{duration: 0.3}}
+                                        className="h-full flex flex-col"
+                                    >
+                                        <Card className="h-full flex flex-col aircraft-shadow border-border overflow-hidden group">
+                                            <div className="relative h-64 overflow-hidden">
+                                                <motion.img
+                                                    src={
+                                                        aircraft.thumbnail_url ||
+                                                        "https://lh3.googleusercontent.com/proxy/rnI3_En64EP7f3eLxeUK59zazrOt3DPuEhk8NOfOY_jdK7VbA7ucKFfwPTqdi_wFZCDyEWJ7hDnZq6D-94CPn7Qlp3A8tmPuWmJZf4aO3kbPtBnKfwVtZw"
+                                                    }
+                                                    alt={aircraft.thumbnail_caption}
+                                                    onError={(e) => {
+                                                        e.currentTarget.src =
+                                                            "https://lh3.googleusercontent.com/proxy/rnI3_En64EP7f3eLxeUK59zazrOt3DPuEhk8NOfOY_jdK7VbA7ucKFfwPTqdi_wFZCDyEWJ7hDnZq6D-94CPn7Qlp3A8tmPuWmJZf4aO3kbPtBnKfwVtZw";
+                                                    }}
+                                                    className="w-full h-full object-cover"
+                                                    whileHover={{scale: 1.1}}
+                                                    transition={{duration: 0.5}}
+                                                />
+                                                <div className="absolute inset-0 bg-linear-to-t from-background to-transparent opacity-60" />
+                                                <Badge className="absolute top-4 right-4 gradient-sky">
+                                                    {getTypeLabel(aircraft.type)}
+                                                </Badge>
+                                                {aircraft.status === "under restoration" && (
+                                                    <Badge className="absolute top-4 left-4 bg-accent">
+                                                        Under Restoration
+                                                    </Badge>
+                                                )}
 
-                                    <CardContent className="p-6">
-                                        <h3 className="text-2xl font-bold mb-2 group-hover:text-primary transition-colors">
-                                            {aircraft.name}
-                                        </h3>
-                                        <p className="text-sm text-muted-foreground mb-3">
-                                            {aircraft.manufacturer} • {aircraft.year_built}
-                                        </p>
-                                        <p className="text-muted-foreground mb-4 line-clamp-3">
-                                            {aircraft.description}
-                                        </p>
-                                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                                            <Badge variant="outline">{aircraft.model}</Badge>
-                                            {aircraft.display_section && (
-                                                <Badge variant="outline">{aircraft.display_section}</Badge>
-                                            )}
-                                        </div>
-                                    </CardContent>
-                                </Card>
-                            </Link>
+                                                <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                                                    <div className="bg-background/90 p-2 rounded-lg">
+                                                        <QrCode className="h-5 w-5 text-primary" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <CardContent className="p-6 grow flex flex-col">
+                                                <h3 className="text-2xl font-bold mb-2 group-hover:text-primary transition-colors">
+                                                    {aircraft.name}
+                                                </h3>
+                                                <p className="text-sm text-muted-foreground mb-3">
+                                                    {aircraft.manufacturer} • {aircraft.year_built}
+                                                </p>
+                                                <p className="text-muted-foreground mb-4 line-clamp-3 grow">
+                                                    {aircraft.description}
+                                                </p>
+                                                <div className="flex items-center gap-2 text-sm text-muted-foreground mt-auto">
+                                                    <Badge variant="outline">{aircraft.model}</Badge>
+                                                    {aircraft.display_section && (
+                                                        <Badge variant="outline">{aircraft.display_section}</Badge>
+                                                    )}
+                                                </div>
+                                            </CardContent>
+                                        </Card>
+                                    </motion.div>
+                                </Link>
+                            </motion.div>
                         ))}
                     </div>
 
                     {filteredAircraft.length === 0 && (
-                        <div className="py-16 flex-1 flex flex-col items-center justify-center">
+                        <motion.div className="text-center py-16" initial={{opacity: 0}} animate={{opacity: 1}}>
                             <p className="text-xl text-muted-foreground">
                                 No aircraft found matching your search criteria.
                             </p>
-                        </div>
+                        </motion.div>
                     )}
                 </div>
             </div>
 
-            <footer className="py-8 bg-card border-t border-border mt-auto">
+            <footer className="py-8 bg-card border-t border-border relative z-10">
                 <div className="container mx-auto px-4 text-center text-muted-foreground">
                     <p>&copy; 2024 Finnish Aviation Museum. All rights reserved.</p>
                 </div>
