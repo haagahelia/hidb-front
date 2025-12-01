@@ -205,7 +205,7 @@ const AircraftDetail = () => {
                             )}
 
                             {/* Fun Facts */}
-                            {aircraft.funFacts && aircraft.funFacts.length > 0 && (
+                            {aircraft.fun_facts && aircraft.fun_facts.length > 0 && (
                                 <motion.div
                                     initial={{opacity: 0, x: -30}}
                                     animate={{opacity: 1, x: 0}}
@@ -220,7 +220,7 @@ const AircraftDetail = () => {
                                         </CardHeader>
                                         <CardContent>
                                             <ul className="space-y-3">
-                                                {aircraft.funFacts.map((fact, index) => (
+                                                {aircraft.fun_facts.map((fact, index) => (
                                                     <motion.li
                                                         key={index}
                                                         className="flex items-start gap-3 text-white/90"
