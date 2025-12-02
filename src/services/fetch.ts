@@ -1,8 +1,11 @@
 import {AircraftInterface} from "@/interfaces/interfaces";
 import {OrganizationInterface} from "@/interfaces/interfaces";
+
+const API_BASE = import.meta.env.VITE_API_BASE || 'https://hidb-back-sdp-2-aviation-museum.2.rahtiapp.fi';
+
 export async function fetchAllAirCrafts() {
     try {
-        const response = await fetch("http://localhost:4678/api/aircraft");
+        const response = await fetch(`${API_BASE}/api/aircraft`);
 
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
@@ -20,7 +23,7 @@ export async function fetchAllAirCrafts() {
 
 export async function fetchAircraftById(id: number) {
     try {
-        const response = await fetch(`http://localhost:4678/api/aircraft/${id}`);
+        const response = await fetch(`${API_BASE}/api/aircraft/${id}`);
 
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
@@ -39,7 +42,7 @@ export async function fetchAircraftById(id: number) {
 
 export async function fetchAllOrganizations() {
     try {
-        const response = await fetch("http://localhost:4678/api/organization");
+        const response = await fetch(`${API_BASE}/api/organization`);
 
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
@@ -57,7 +60,7 @@ export async function fetchAllOrganizations() {
 
 export async function fetchOrganizationById(id: number) {
     try {
-        const response = await fetch(`http://localhost:4678/api/organization/${id}`);
+        const response = await fetch(`${API_BASE}/api/organization/${id}`);
 
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
