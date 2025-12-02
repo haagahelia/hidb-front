@@ -27,8 +27,8 @@ context('Cypress APIs', () => {
         return subject
       })
 
-      cy.get('button').console('info').then(($button) => {
-      // subject is still $button
+      cy.get('button').console('info').then((_$button) => {
+        // subject is still _$button
       })
     })
   })
