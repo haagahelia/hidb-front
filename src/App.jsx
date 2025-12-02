@@ -6,7 +6,7 @@ import Aircraft from "./pages/Aircraft";
 import AircraftDetail from "./pages/AircraftDetail";
 import Organization from "./pages/Organization";
 import OrganizationDetail from "./pages/OrganizationDetail";
-import Quiz from "./pages/Quiz";
+import Quiz from "./pages/game/Quiz";
 // import MuseumMap from "./pages/MuseumMap";
 // import About from "./pages/About";
 import NotFound from "./pages/NotFound";

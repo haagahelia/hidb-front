@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 // Update the import path to the correct location of Progress
-import { Progress } from "../components/ui/progress";
+import { Progress } from "../../components/ui/progress";
 import { aircraftData } from "@/data/aircraftData";
 
 const Quiz = () => {
@@ -26,45 +26,64 @@ const Quiz = () => {
   }, [aircraft]);
 
   const generateQuestions = () => {
+    const shuffleArray = (array) => {
+      const shuffled = [...array];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      return shuffled;
+    };
+
     const qs = [
       {
         question: `What is the manufacturer of ${aircraft.name}?`,
-        options: [aircraft.manufacturer, "Boeing", "Airbus", "Lockheed Martin"],
+        options: shuffleArray([
+          aircraft.manufacturer,
+          "Boeing",
+          "Airbus",
+          "Lockheed Martin",
+        ]),
         correct: aircraft.manufacturer,
       },
       {
         question: `In what year was ${aircraft.name} built?`,
-        options: [
+        options: shuffleArray([
           aircraft.year_built.toString(),
           (aircraft.year_built + 5).toString(),
           (aircraft.year_built - 5).toString(),
           (aircraft.year_built + 10).toString(),
-        ],
+        ]),
         correct: aircraft.year_built.toString(),
       },
       {
         question: `What type of aircraft is ${aircraft.name}?`,
-        options: [
+        options: shuffleArray([
           aircraft.type,
           "military",
-          "commercial",
-          "general aviation",
-        ].filter((t) => t !== aircraft.type),
+          "cargo",
+          "rotorcraft",
+        ]),
         correct: aircraft.type,
       },
       {
         question: `What is the model of ${aircraft.name}?`,
-        options: [aircraft.model, "Unknown", "Prototype", "Experimental"],
+        options: shuffleArray([
+          aircraft.model,
+          "Unknown",
+          "Prototype",
+          "Experimental",
+        ]),
         correct: aircraft.model,
       },
       {
         question: `What is the status of ${aircraft.name}?`,
-        options: [
+        options: shuffleArray([
           aircraft.status,
-          "on display",
           "in storage",
           "under restoration",
-        ].filter((s) => s !== aircraft.status),
+          "loaned",
+        ]),
         correct: aircraft.status,
       },
     ];
