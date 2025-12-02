@@ -6,6 +6,7 @@ import Aircraft from "./pages/Aircraft";
 import AircraftDetail from "./pages/AircraftDetail";
 import Organization from "./pages/Organization";
 import OrganizationDetail from "./pages/OrganizationDetail";
+import Quiz from "./pages/Quiz";
 // import MuseumMap from "./pages/MuseumMap";
 // import About from "./pages/About";
 import NotFound from "./pages/NotFound";
@@ -20,6 +21,7 @@ const App = () => (
                     <Route path="/" element={<Index />} />
                     <Route path="/aircraft" element={<Aircraft />} />
                     <Route path="/aircraft/:id" element={<AircraftDetail />} />
+                    <Route path="/quiz/:id" element={<Quiz />} />
                     <Route path="/organization" element={<Organization />} />
                     <Route path="/organization/:id" element={<OrganizationDetail />} />
 
