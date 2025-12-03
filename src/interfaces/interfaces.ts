@@ -27,7 +27,7 @@ export interface AircraftInterface {
   };
   history?: string;
   importance?: string;
-  funFacts?: string[];
+  fun_facts?: string[];
 }
 
 export interface OrganizationInterface {

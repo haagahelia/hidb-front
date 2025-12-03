@@ -43,7 +43,7 @@ export interface Aircraft {
   };
   history?: string;
   importance?: string;
-  funFacts?: string[];
+  fun_facts?: string[];
 }
 
 export const aircraftData: Aircraft[] = [
@@ -75,7 +75,7 @@ export const aircraftData: Aircraft[] = [
     },
     history: "The MiG-21 is one of the most produced supersonic jets in aviation history. Finland operated MiG-21bis variants from 1963 to 1998 as part of its air defense strategy during the Cold War.",
     importance: "The MiG-21 represents a significant chapter in Finnish aviation history, symbolizing Finland's unique position during the Cold War.",
-    funFacts: [
+    fun_facts: [
       "Over 11,000 MiG-21s were produced, making it one of the most numerous jet fighters ever built",
       "Finnish pilots nicknamed it 'Balalaika' due to its distinctive triangular planform",
       "The MiG-21 could reach an altitude of 17,500 meters in just 7 minutes"
@@ -108,7 +108,7 @@ export const aircraftData: Aircraft[] = [
     },
     history: "The Douglas DC-3 revolutionized air transport in the 1930s and 1940s, making commercial air travel practical and profitable. Finnish airlines operated DC-3s extensively from the 1940s through the 1970s.",
     importance: "The DC-3 is arguably the most significant transport aircraft in aviation history. In Finland, it connected a remote Nordic nation to the rest of Europe and beyond.",
-    funFacts: [
+    fun_facts: [
       "Over 16,000 DC-3s and military variants were produced",
       "Many DC-3s are still flying today, over 85 years after the first flight",
       "It could carry 21-32 passengers in comfort previously unknown in air travel"
@@ -142,7 +142,7 @@ export const aircraftData: Aircraft[] = [
     },
     history: "The Messerschmitt Bf 109 was one of the most advanced fighters of its era. Finland acquired Bf 109G variants in 1943 to strengthen its air defenses during the Continuation War.",
     importance: "Finland was the last country to operate the Bf 109 in military service, retiring them in 1954.",
-    funFacts: [
+    fun_facts: [
       "Over 34,000 Bf 109s were produced, more than any other fighter aircraft in history",
       "Finnish ace Eino Ilmari Juutilainen scored 34 of his 94 victories flying the Bf 109"
     ]
@@ -175,7 +175,7 @@ export const aircraftData: Aircraft[] = [
     },
     history: "Finnish pilots achieved an exceptional kill ratio of 32:1 with this aircraft during the Continuation War.",
     importance: "The Buffalo's service demonstrates how aircraft performance depends heavily on tactics and pilot skill.",
-    funFacts: [
+    fun_facts: [
       "Finnish pilot Hans Wind scored 39 of his 75 victories flying the Buffalo",
       "Finnish pilots affectionately called it 'Taivaan helmi' (Pearl of the Sky)"
     ]
@@ -208,7 +208,7 @@ export const aircraftData: Aircraft[] = [
     },
     history: "Finland acquired 30 Gladiators from Britain in 1940 during the Winter War. Despite being obsolete, it served admirably in Finnish hands.",
     importance: "The Gladiator represents the transition era between biplane and monoplane fighters.",
-    funFacts: [
+    fun_facts: [
       "Last biplane fighter in RAF service before monoplanes took over",
       "Featured an enclosed cockpit, unusual for biplanes of the era"
     ]
@@ -241,7 +241,7 @@ export const aircraftData: Aircraft[] = [
     },
     history: "Finland built 93 D.XXIs under license, forming the bulk of Finnish fighter strength during the Winter War of 1939-1940.",
     importance: "The D.XXI was crucial to Finland's air defense during the Winter War.",
-    funFacts: [
+    fun_facts: [
       "Finland built more D.XXIs than the Netherlands, the country of origin",
       "Performed exceptionally well in Finnish winter conditions"
     ]
@@ -274,7 +274,7 @@ export const aircraftData: Aircraft[] = [
     },
     history: "The Hurricane shot down more enemy aircraft than Spitfires during the Battle of Britain. Finland acquired 12 Hurricanes in 1940.",
     importance: "The Hurricane represents the RAF's modernization before WWII.",
-    funFacts: [
+    fun_facts: [
       "Shot down more enemy aircraft than Spitfires in Battle of Britain",
       "Over 14,500 Hurricanes were built in various versions"
     ]
@@ -307,7 +307,7 @@ export const aircraftData: Aircraft[] = [
     },
     history: "Constructed primarily of wood, the Mosquito was one of WWII's most remarkable aircraft, serving in bomber, fighter, and reconnaissance roles.",
     importance: "The Mosquito was one of the fastest operational aircraft of WWII.",
-    funFacts: [
+    fun_facts: [
       "Nicknamed 'Wooden Wonder' due to wooden construction",
       "One of the fastest aircraft of WWII, often flew without defensive armament"
     ]
@@ -340,7 +340,7 @@ export const aircraftData: Aircraft[] = [
     },
     history: "Finland operated the Draken from 1974 to 2000 as its primary fighter aircraft during the latter Cold War period.",
     importance: "The Draken showcased Swedish aerospace excellence and served Finland's air defense for over 25 years.",
-    funFacts: [
+    fun_facts: [
       "Its unique double-delta wing design was revolutionary",
       "Could perform the 'Cobra' maneuver decades before it became famous"
     ]
@@ -373,7 +373,7 @@ export const aircraftData: Aircraft[] = [
     },
     history: "One of the first successful swept-wing jet fighters, the MiG-15 was a formidable opponent in the Korean War.",
     importance: "The MiG-15 represents the beginning of the jet age in aerial combat.",
-    funFacts: [
+    fun_facts: [
       "Over 12,000 MiG-15s were built",
       "Its appearance in Korea shocked Western air forces"
     ]
@@ -405,7 +405,7 @@ export const aircraftData: Aircraft[] = [
     },
     history: "Finland operated Fouga Magisters for jet pilot training during the Cold War era.",
     importance: "The Magister helped train a generation of Finnish jet pilots.",
-    funFacts: [
+    fun_facts: [
       "Its distinctive V-tail made it instantly recognizable",
       "Over 900 were produced and used by many air forces"
     ]
@@ -437,7 +437,7 @@ export const aircraftData: Aircraft[] = [
     },
     history: "Finland acquired Vampires in 1953, marking the Finnish Air Force's entry into the jet age.",
     importance: "The Vampire was Finland's first jet fighter, training pilots for the supersonic era.",
-    funFacts: [
+    fun_facts:[
       "One of the first jet fighters to enter squadron service",
       "Its twin-boom design was distinctive and unusual"
     ]
@@ -469,7 +469,7 @@ export const aircraftData: Aircraft[] = [
     },
     history: "The Pyry was Finland's main primary trainer during WWII, training hundreds of Finnish pilots.",
     importance: "Represents Finnish aircraft manufacturing capability during the war years.",
-    funFacts: [
+    fun_facts: [
       "Name means 'Blizzard' in Finnish",
       "Over 40 were built in Finland"
     ]
@@ -501,7 +501,7 @@ export const aircraftData: Aircraft[] = [
     },
     history: "The L-70 Vinka trained Finnish Air Force pilots from 1980 to 2020, representing modern Finnish aviation industry.",
     importance: "Last Finnish-designed military trainer, representing post-war Finnish aerospace industry.",
-    funFacts: [
+    fun_facts: [
       "Name means 'Slant' in Finnish",
       "Over 30 were built and some are still flying"
     ]
@@ -533,7 +533,7 @@ export const aircraftData: Aircraft[] = [
     },
     history: "The Cherokee is one of the most successful general aviation aircraft ever produced, with over 32,000 built.",
     importance: "Represents the democratization of flying and the general aviation boom of the 1960s-70s.",
-    funFacts: [
+    fun_facts: [
       "One of the most popular training aircraft ever",
       "Known for being easy to fly and maintain"
     ]
