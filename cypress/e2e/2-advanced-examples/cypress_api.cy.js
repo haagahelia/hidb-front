@@ -27,8 +27,8 @@ context('Cypress APIs', () => {
         return subject
       })
 
-      cy.get('button').console('info').then(($button) => {
-      // subject is still $button
+      cy.get('button').console('info').then((_$button) => {
+        // subject is still _$button
       })
     })
   })
@@ -122,19 +122,19 @@ context('Cypress APIs', () => {
     // set multiple environment variables
       Cypress.env({
         host: 'veronica.dev.local',
-        api_server: 'http://localhost:8888/v1/',
+        api_server: 'https://hidb-back-sdp-2-aviation-museum.2.rahtiapp.fi/api/aircraft',
       })
 
       // get environment variable
       expect(Cypress.env('host')).to.eq('veronica.dev.local')
 
       // set environment variable
-      Cypress.env('api_server', 'http://localhost:8888/v2/')
-      expect(Cypress.env('api_server')).to.eq('http://localhost:8888/v2/')
+      Cypress.env('api_server', 'https://hidb-back-sdp-2-aviation-museum.2.rahtiapp.fi/api/aircraft')
+      expect(Cypress.env('api_server')).to.eq('https://hidb-back-sdp-2-aviation-museum.2.rahtiapp.fi/api/aircraft')
 
       // get all environment variable
       expect(Cypress.env()).to.have.property('host', 'veronica.dev.local')
-      expect(Cypress.env()).to.have.property('api_server', 'http://localhost:8888/v2/')
+      expect(Cypress.env()).to.have.property('api_server', 'https://hidb-back-sdp-2-aviation-museum.2.rahtiapp.fi/api/aircraft')
     })
   })
 
